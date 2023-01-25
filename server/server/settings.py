@@ -33,7 +33,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,6 +48,12 @@ INSTALLED_APPS = [
     # 'coresheaders',
     'rest_framework',
 ]
+# This disables the Django REST framework browsable API view so users cant use it to interact with the database. Add this line to your settings.py file.
+REST_FRAMEWORK = {
+     'DEFAULT_RENDERER_CLASSES': (
+         'rest_framework.renderers.JSONRenderer',
+     )
+ }
 
 MIDDLEWARE = [
     #CORS

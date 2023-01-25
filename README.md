@@ -11,8 +11,10 @@ This project is build to learn about the intergration of these three technologie
 * login to the virtual environment by typing, env\Scripts\activate, into the command line (windows only)
 * Install python packages: pip install django psycopg2 python-decouple
 * In the server directory: pip install djangorestframework django-cors-headers
+* in the server directory create a .env file.  DB_PW=, DB_NAME=, USER_NAME=, SECRET_KEY= most all be filled in.
 * cd to client 
 * install node packages: npm i
+
 
 ## Database
 * login to with default user PostgreSQL: psql -U postgres
