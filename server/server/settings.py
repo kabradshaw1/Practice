@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from decouple import config, Csv
 import os
+import dj_database_url
+# import django_heroku
+
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
@@ -29,7 +32,7 @@ REAL_BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -56,9 +59,12 @@ REST_FRAMEWORK = {
  }
 
 MIDDLEWARE = [
-    #CORS
+    #CORS I've used these in some builds, but not this one.  
     # 'corsheaders.middleware.CorsMiddleware',
     # 'django.middleware.common.CommonMiddleware',
+
+    # for heroku deployment from https://sweetcode.io/deploying-your-django-web-app-to-heroku/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -149,3 +155,5 @@ STATICFILES_DIRS = [os.path.join(REAL_BASE_DIR, 'client', 'build', 'static')]
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS_ORIGIN_ALLOW_ALL = True # added to solve CORS
+
+django-heroku.settings(locals)
