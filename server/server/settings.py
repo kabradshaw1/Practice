@@ -14,7 +14,6 @@ from pathlib import Path
 from decouple import config, Csv
 import os
 import dj_database_url
-# import django_heroku
 
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
@@ -163,6 +162,4 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CORS_ORIGIN_ALLOW_ALL = True # added to solve CORS
 
-django-heroku.settings(locals)
