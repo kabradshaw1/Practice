@@ -35,7 +35,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost','https://serene-tor-73175.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost','serene-tor-73175.herokuapp.com/', '127.0.0.1']
 
 # Application definition
 
