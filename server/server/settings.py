@@ -34,7 +34,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost','https://serene-tor-73175.herokuapp.com/', '127.0.0.1']
 
 # Application definition
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     # 'coresheaders',
     'rest_framework',
+    'whitenoise.runserver_nostatic',
 ]
 # This disables the Django REST framework browsable API view so users cant use it to interact with the database. Add this line to your settings.py file.
 REST_FRAMEWORK = {
@@ -110,6 +111,8 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -147,7 +150,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT='/client/build/static/'
+
 STATICFILES_DIRS = [os.path.join(REAL_BASE_DIR, 'client', 'build', 'static')]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# added these media variables from dev.to tutorial for deploying to heroku
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

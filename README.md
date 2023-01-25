@@ -10,6 +10,7 @@ This project is build to learn about the intergration of these three technologie
 * Create a virtual environment for the project by typing, python -m venv env, into the command line
 * login to the virtual environment by typing, env\Scripts\activate, into the command line (windows only)
 * Install python packages: pip install django psycopg2 python-decouple
+* If you plan on push to heroku, you will also need: pip install waitress gunicorn django-heroku
 * In the server directory: pip install djangorestframework django-cors-headers
 * in the server directory create a .env file.  DB_PW=, DB_NAME=, USER_NAME=, SECRET_KEY= most all be filled in.
 * cd to client 
