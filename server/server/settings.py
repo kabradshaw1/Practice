@@ -30,6 +30,8 @@ REAL_BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
@@ -48,8 +50,8 @@ INSTALLED_APPS = [
 
     'core',
 
-    # 'coresheaders',
     'rest_framework',
+    # for heroku deployment
     'whitenoise.runserver_nostatic',
 ]
 # This disables the Django REST framework browsable API view so users cant use it to interact with the database. Add this line to your settings.py file.
@@ -60,11 +62,7 @@ REST_FRAMEWORK = {
  }
 
 MIDDLEWARE = [
-    #CORS I've used these in some builds, but not this one.  
-    # 'corsheaders.middleware.CorsMiddleware',
-    # 'django.middleware.common.CommonMiddleware',
-
-    # for heroku deployment from https://sweetcode.io/deploying-your-django-web-app-to-heroku/
+      # for heroku deployment 
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
@@ -150,7 +148,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATIC_ROOT='/client/build/static/'
+STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [os.path.join(REAL_BASE_DIR, 'client', 'build', 'static')]
 
